@@ -1,0 +1,19 @@
+[Unit]
+Description=Android Debug Server Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/adb
+ExecStart=/bin/sh -c "/opt/adb/control.sh start"
+ExecStop=/bin/sh -c "/opt/adb/control.sh stop"
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=adb-server
+Environment="ADB_CLK_IPS=192.168.0.131"
+
+[Install]
+WantedBy=multi-user.target
